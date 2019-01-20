@@ -96,7 +96,14 @@ history:
     action:
         update: updated by        
         delete: deleted by
-        create: created by  
+        create: created by
+fitler:
+    string:
+        contains: Contain
+        starts_with: Starts with
+        ends_with: Ends with
+        is_null: Is null
+        is_not_null: Is not null
 Rechercher: Search
 Filtrer: Filter
 Effacer: Clear
