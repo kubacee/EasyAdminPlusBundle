@@ -138,7 +138,7 @@ services:
     lle.service.export_manager:
         public: true
         class:  '%lle.service.export_manager.class%'
-        arguments: ["@easyadmin.config.manager","@property_accessor","@translator", !tagged lle.exporter]
+        arguments: ["@easyadmin.config.manager","@property_accessor","@translator", !tagged lle.exporter, '@twig']
             
 
     lle.service.delete_batch:
