@@ -2,12 +2,14 @@
 
 namespace Lle\EasyAdminPlusBundle\Service;
 
+use Doctrine\Common\Collections\Collection;
 use Lle\EasyAdminPlusBundle\Service\Exporter\ExporterInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 use EasyCorp\Bundle\EasyAdminBundle\Configuration\ConfigManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Translation\DataCollectorTranslator;
 use Symfony\Component\Translation\TranslatorInterface;
+use Twig\Environment as Twig;
 
 class ExportManager
 {
@@ -16,6 +18,8 @@ class ExportManager
     private $propertyAccessor;
     private $configManager;
     private $translator;
+    /** @var Twig  */
+    private $twig;
     private $exporters = [];
 
 
@@ -23,8 +27,9 @@ class ExportManager
         ConfigManager $configManager,
         PropertyAccessor $propertyAccessor,
         TranslatorInterface $translator,
-        iterable $exporters)
-    {
+        iterable $exporters,
+        Twig $twig
+    ) {
         $this->configManager = $configManager;
         $this->propertyAccessor = $propertyAccessor;
         $this->translator = $translator;
@@ -36,17 +41,31 @@ class ExportManager
                 $this->exporters[$exporter->getFormat()] = $exporter;
             }
         }
+
+        $this->twig = $twig;
     }
 
     private function getExportableValue($entity, array $field): ?string{
+        $template = $field['template'];
+
         $value = $this->propertyAccessor->getValue($entity, $field['property']);
-        if($value instanceOf \DateTime){
-            return $value->format($field['format']);
-        }elseif(is_array($value)){
-            return implode(',', $value);
-        }elseif(is_object($value)){
-            return (string)$value;
+
+        if ($value instanceOf \DateTime){
+            $value = $value->format($field['format']);
         }
+        elseif(is_array($value)){
+            $value = implode(',', $value);
+        }
+        elseif ($value instanceof Collection) {
+            // @todo, quick fix
+            if ($template) {
+                return $this->twig->render($template, ['value' => $value]);
+            }
+        }
+        elseif(is_object($value)){
+            $value = (string)$value;
+        }
+
         return $value;
     }
 
