@@ -9,23 +9,23 @@
     />
     <div class="input-group-btn">
         <button type="button" class="btn btn-default dropdown-toggle {{nameprefix}}button{{namesuffix}}" data-toggle="dropdown" aria-expanded="false">
-            <i title="Est égal à" class="fa fa-text-width eq"></i>
-            <i title="N'est pas égal à" class="fa fa-exclamation neq"></i>
-            <i title="Plus petit que" class="fa fa-chevron-left lte"></i>
-            <i title="Plus grand que" class="fa fa-chevron-right gte"></i>
+            <i title="Jest równe" class="fa fa-text-width eq"></i>
+            <i title="Nie jest równe" class="fa fa-exclamation neq"></i>
+            <i title="Mniejsze niż" class="fa fa-chevron-left lte"></i>
+            <i title="Większe niż" class="fa fa-chevron-right gte"></i>
         </button>
         <ul class="dropdown-menu pull-right" role="menu">
             <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="return lle.filter_set_button('#{{nameprefix}}comparator{{namesuffix}}','.{{nameprefix}}button{{namesuffix}}','eq');">
-                    <i class="fa fa-text-width"></i>Est égal à</a>
+                    <i class="fa fa-text-width"></i>Jest równe</a>
             </li>
             <li role="presentation"><a role="menuitem" tabindex="-1" href="#"  onclick="return lle.filter_set_button('#{{nameprefix}}comparator{{namesuffix}}','.{{nameprefix}}button{{namesuffix}}','neq');">
-                    <i class="fa fa-exclamation"></i>N'est pas égal à</a>
+                    <i class="fa fa-exclamation"></i>Nie jest równe</a>
             </li>
             <li role="presentation"><a role="menuitem" tabindex="-1" href="#"  onclick="return lle.filter_set_button('#{{nameprefix}}comparator{{namesuffix}}','.{{nameprefix}}button{{namesuffix}}','lte');">
-                    <i class="fa fa-chevron-left"></i>Plus petit que</a>
+                    <i class="fa fa-chevron-left"></i>Mniejsze niż</a>
             </li>
             <li role="presentation"><a role="menuitem" tabindex="-1" href="#"  onclick="return lle.filter_set_button('#{{nameprefix}}comparator{{namesuffix}}','.{{nameprefix}}button{{namesuffix}}','gte');">
-                    <i class="fa fa-chevron-right"></i>Plus grand que</a>
+                    <i class="fa fa-chevron-right"></i>Większe niż</a>
             </li>
         </ul>
         <!--<ul class="dropdown-menu" role="menu">
